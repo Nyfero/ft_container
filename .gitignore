@@ -1,0 +1,6 @@
+*.o
+*.out
+*.a
+.vscode
+ft_containers
+containers-louis

@@ -22,8 +22,8 @@ namespace ft {
 			typedef T*											iterator;
 			typedef const T*									const_iterator;
 
-			typedef ft::reverse_iterators<iterator>				reverse_iterator;
-			typedef ft::reverse_iterators<const_iterator>		reverse_const_iterator;
+			typedef ft::reverse_iterator<iterator>				reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 
 			typedef typename allocator_type::reference			reference;
 			typedef typename allocator_type::const_reference	const_reference;
@@ -81,7 +81,7 @@ namespace ft {
 
 			// 3
 			explicit vector( size_type count, const value_type& value = value_type(), const allocator_type& alloc = allocator_type() )
-				: _alloc(alloc), _capacity(count), _size(count) {
+				: _alloc(alloc), _size(count), _capacity(count) {
 				_data = _alloc.allocate(count);
 				for (size_type i = 0; i < count; i++) {
 					_alloc.construct(_data + i, value);
@@ -161,7 +161,6 @@ namespace ft {
 
 			// 1
 			void assign( size_type count, const T& value ) {
-				clear();
 				reserve(count);
 				for (size_type i = 0; i < count; i++) {
 					_alloc.destroy(_data + i);
@@ -173,14 +172,13 @@ namespace ft {
 			// 2
 			template< class InputIt >
 			void assign( InputIt first, InputIt last , typename ft::enable_if<!ft::is_integral<InputIt>::value>::type* = NULL ) {
-				clear();
-				size_type count = last - first;
+				size_type count = std::distance(first, last);
 				reserve(count);
 				for (size_type i = 0; i < count; i++) {
 					_alloc.destroy(_data + i);
-					_alloc.construct(_data + i, *(first + i));
+					_alloc.construct(_data + i, *first++);
 				}
-				_size = _capacity;
+				_size = count;
 			};
 
 
@@ -337,7 +335,7 @@ namespace ft {
 				return reverse_iterator(end());
 			};
 
-			reverse_const_iterator rbegin() const {
+			const_reverse_iterator rbegin() const {
 				return reverse_const_iterator(end());
 			};
 
@@ -354,7 +352,7 @@ namespace ft {
 				return reverse_iterator(begin());
 			};
 
-			reverse_const_iterator rend() const {
+			const_reverse_iterator rend() const {
 				return reverse_const_iterator(begin());
 			};
 
@@ -415,8 +413,6 @@ namespace ft {
 			*/
 
 			void reserve( size_type new_cap ) {
-				if (!new_cap || new_cap <= _capacity)
-					return ;
 				if (new_cap > max_size()) {
 					throw std::length_error("vector::reserve");
 				}
@@ -500,9 +496,7 @@ namespace ft {
 				if (_size + count > _capacity) {
 					reserve(_size + count);
 				}
-				if (index > 0) {
-					shift_right(index, count);
-				}
+				shift_right(index, count);
 				for (size_type i = 0; i < count; i++) {
 					_alloc.construct(_data + index + i, value);
 					_size++;
@@ -511,7 +505,7 @@ namespace ft {
 
 			template< class InputIt >
 			void insert( const_iterator pos, InputIt first, InputIt last, typename ft::enable_if<!ft::is_integral<InputIt>::value>::type* = NULL ) {
-				size_type count = last - first;
+				size_type count = std::distance(first, last);
 				if (!count) {
 					return;
 				}
@@ -519,11 +513,9 @@ namespace ft {
 				if (_size + count > _capacity) {
 					reserve(_size + count);
 				}
-				if (index > 0) {
-					shift_right(index, count);
-				}
+				shift_right(index, count);
 				for (size_type i = 0; i < count; i++) {
-					_alloc.construct(_data + index + i, *(first + i));
+					_alloc.construct(_data + index + i, *first++);
 					_size++;
 				}
 			};
@@ -660,36 +652,38 @@ namespace ft {
 
 			// Shift all my vector elements from pos to the right n times
 			void	shift_right( size_type pos, size_type n ) {
-				for (size_type i = _size - 1; i >= pos; i--) {
-				_alloc.construct(_data + i + n, _data[i]);
-				_alloc.destroy(_data + i);
-				if (i == 0)
-					break;
-			}
-			}
+				for (size_type i = _size - 1; i >= pos && _size; i--) {
+					_alloc.construct(_data + i + n, _data[i]);
+					_alloc.destroy(_data + i);
+					if (i == 0) {
+						break;
+					}
+				}
+			};
 
 			// Shift all my vector elements from pos to the left n times
 			void	shift_left( size_type pos, size_type n ) {
 				for (; pos < _size && pos + n < _capacity; pos++) {
-				_alloc.construct(_data + pos, _data[pos + n]);
-				_alloc.destroy(_data + pos + n);
-				}
-			}
+					_alloc.construct(_data + pos, _data[pos + n]);
+					_alloc.destroy(_data + pos + n);
+					}
+				};
 
 			// Throw an error if the element is out of range for the vector
-			void	range_check( size_type pos ) {
+			void	range_check( size_type pos ) const {
 				std::ostringstream c_n;
 				std::ostringstream c_size;
 
 				c_n << pos;
 				c_size << _size;
-				if (pos >= _size)
+				if (pos >= _size) {
 					throw std::out_of_range(
 						std::string("vector::_M_range_check: __n ") + \
 						std::string("(which is ") + c_n.str() + \
 						std::string(") >= this->size() (which is ") + \
 						c_size.str() + std::string(")"));
-			}
+				}
+			};
 	};
 
 	/******************************************/

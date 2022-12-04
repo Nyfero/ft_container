@@ -3,6 +3,14 @@
 #ifndef UTILS_HPP
 # define UTILS_HPP
 
+# if STD
+    # define PRE std
+    # define CHECK "std"
+# else
+    # define PRE ft
+    # define CHECK "ft"
+# endif
+
 # include <iostream>
 # include <string>
 # include <deque>
@@ -11,16 +19,21 @@
 # include <sys/time.h>
 # include <unistd.h>
 # include <cstddef>
+# include <iterator>
+# include <utility>
+# include <string>
+# include <time.h>
+# include <math.h>
 
 # include "iterator_traits.hpp"
-# include "reverse_iterators.hpp"
+# include "reverse_iterator.hpp"
 # include "enable_if.hpp"
 # include "equal.hpp"
 # include "is_integral.hpp"
 # include "lexicographical_compare.hpp"
 # include "vector_iterators.hpp"
 # include "pair.hpp"
-// # include "map_iterators.hpp"
+# include "map_iterators.hpp"
 
 // STD lib
 # include <stack>

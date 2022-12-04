@@ -2,11 +2,11 @@
 
 void	stack_test_push_top() {
 	title("\e[95m-Push Top-\e[39m");
-	
-	std::stack<int> real;
-	ft::stack<int> mine;
+
+	PRE::stack<int> real;
+	PRE::stack<int> mine;
 	long time = get_time();
-	
+
 	annonce("Push 50 elements");
 	for (int i = 0; i < 50; i++) {
 		real.push(i);
@@ -34,11 +34,11 @@ void	stack_test_push_top() {
 void	stack_test_size() {
 	title("\e[95m-Size-\e[39m");
 	srand(time(NULL));
-	
-	std::stack<int> real;
-	ft::stack<int> mine;
+
+	PRE::stack<int> real;
+	PRE::stack<int> mine;
 	int k = rand() % 101;
-	
+
 	annonce("Push between 0 and 100 elements and check size");
 	for (int i = 0; i < k; i++) {
 		real.push(1);
@@ -55,16 +55,16 @@ void	stack_test_size() {
 void stack_test_pop_empty() {
 	title("\e[95m-Pop Empty-\e[39m");
 	srand(time(NULL));
-	
-	std::stack<int> real;
-	ft::stack<int> mine;
+
+	PRE::stack<int> real;
+	PRE::stack<int> mine;
 	int k = rand() % 51;
-	
+
 	for (int i = 0; i < k; i++) {
 		real.push(1);
 		mine.push(1);
 	}
-	
+
 	annonce("Pop");
 	for (int i = 0; i < k; i++) {
 		real.pop();
@@ -76,7 +76,7 @@ void stack_test_pop_empty() {
 		}
 	}
 	Test_success();
-	
+
 	annonce("Empty");
 	if ((real.empty() && !mine.empty()) || (!real.empty() && mine.empty())) {
 		std::cout << "Real stack: " << real.size() << std::endl;
@@ -88,15 +88,15 @@ void stack_test_pop_empty() {
 
 void stack_test_operators() {
 	title("\e[95m-Operators-\e[39m");
-	
-	ft::stack<int> m1;
-	ft::stack<int> m2;
-	ft::stack<int> m3;
-	
+
+	PRE::stack<int> m1;
+	PRE::stack<int> m2;
+	PRE::stack<int> m3;
+
 	m1.push(1);
 	m2.push(2);
 	m3.push(3);
-	
+
 	annonce("Operator ==");
 	if (m1 == m2) {
 		std::cout << m1.top() << " == " << m2.top() << std::endl;
@@ -143,31 +143,31 @@ void stack_test_operators() {
 void	stack_test_copy() {
 	title("\e[95m-Copy-\e[39m");
 	srand(time(NULL));
-	
-	std::stack<int> real;
-	ft::stack<int> mine;
-	
+
+	PRE::stack<int> real;
+	PRE::stack<int> mine;
+
 	for (int i = 0; i < 4; i++) {
 		int k = rand() % 2147483647;
 		if (i % 2)
 			k *= -1;
 		real.push(k);
 		mine.push(k);
-	
+
 		if (real.size() != mine.size() || real.top() != mine.top()) {
 			std::cout << "Real stack: " << real.top() << std::endl;
 			std::cout << "Mine stack: " << mine.top() << std::endl;
 			return Test_failure();
 		}
 	}
-	
+
 	annonce("Copy constructor");
 
 	long time = get_time();
-	std::stack<int> real2(real);
+	PRE::stack<int> real2(real);
 	long real_time = get_time() - time;
 	time = get_time();
-	ft::stack<int> mine2(mine);
+	PRE::stack<int> mine2(mine);
 	long mine_time = get_time() - time;
 
 	if (real2.size() != mine2.size() ||  real2.top() != mine2.top()) {
@@ -179,14 +179,14 @@ void	stack_test_copy() {
 		Test_success();
 	else
 		Test_timeout();
-	
+
 	annonce("Operator =");
 
 	time = get_time();
-	std::stack<int> real3 = real;
+	PRE::stack<int> real3 = real;
 	real_time = get_time() - time;
 	time = get_time();
-	ft::stack<int> mine3 = mine;
+	PRE::stack<int> mine3 = mine;
 	mine_time = get_time() - time;
 
 	if (real3.top() != mine3.top()) {

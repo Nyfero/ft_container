@@ -7,7 +7,7 @@
 
 namespace ft {
 
-	template < class T, class Container = ft::vector<T> >
+	template < class T, class Container = std::vector<T> >
 	class stack
 	{
 		public:
@@ -76,9 +76,9 @@ namespace ft {
 			/*******************************/
 			/*****      Operators      *****/
 			/*******************************/
-			
-			
-			
+
+
+
 			/*
 			**	Operators
 			**

@@ -4,7 +4,6 @@
 # define MAP_HPP
 
 # include "utils.hpp"
-# include "map_iterators.hpp"
 
 namespace ft {
 
@@ -45,8 +44,8 @@ namespace ft {
 			typedef typename allocator_type::const_pointer											const_pointer;
 			typedef map_iterators<Compare, node<value_type>, value_type>				iterator;
 			typedef map_iterators<Compare, node<value_type>, const value_type>	const_iterator;
-			typedef ft::reverse_iterators<iterator>															reverse_iterator;
-			typedef ft::reverse_iterators<const_iterator>												const_reverse_iterator;
+			typedef ft::reverse_iterator<iterator>															reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>												const_reverse_iterator;
 
 		protected:
 

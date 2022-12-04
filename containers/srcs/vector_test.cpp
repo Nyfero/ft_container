@@ -6,14 +6,14 @@ void	vector_test_constructors() {
 	annonce("Default constructor");
 
 	long time = get_time();
-	std::vector<int> real;
+	PRE::vector<int> real;
 	real.push_back(44);
 	real.push_back(-34);
 	real.push_back(112);
 	long real_time = get_time() - time;
 
 	time = get_time();
-	ft::vector<int>		mine;
+	PRE::vector<int>		mine;
 	mine.push_back(44);
 	mine.push_back(-34);
 	mine.push_back(112);
@@ -23,11 +23,11 @@ void	vector_test_constructors() {
 	annonce("Fill constructor");
 
 	time = get_time();
-	std::vector<int>		real1(3, 42);
+	PRE::vector<int>		real1(3, 42);
 	real_time = get_time() - time;
 
 	time = get_time();
-	ft::vector<int>		mine1(3, 42);
+	PRE::vector<int>		mine1(3, 42);
 	mine_time = get_time() - time;
 	if (!ft::equal(real1.begin(), real1.end(), mine1.begin())) {
 		std::cout << "Mine vector: " << mine1.size() << std::endl;
@@ -38,11 +38,11 @@ void	vector_test_constructors() {
 	annonce("Range constructor");
 
 	time = get_time();
-	std::vector<int>		real2(real1.begin(), real1.end());
+	PRE::vector<int>		real2(real1.begin(), real1.end());
 	real_time = get_time() - time;
 
 	time = get_time();
-	ft::vector<int>	mine2(mine.begin(), mine.end());
+	PRE::vector<int>	mine2(mine.begin(), mine.end());
 	mine_time = get_time() - time;
 	if (!ft::equal(mine.begin(), mine.end(), mine2.begin())) {
 		return Test_failure();
@@ -52,11 +52,11 @@ void	vector_test_constructors() {
 	annonce("Copy constructor");
 
 	time = get_time();
-	std::vector<int>		real3(real2);
+	PRE::vector<int>		real3(real2);
 	real_time = get_time() - time;
 
 	time = get_time();
-	ft::vector<int> mine3(mine);
+	PRE::vector<int> mine3(mine);
 	mine_time = get_time() - time;
 	if (!ft::equal(mine.begin(), mine.end(), mine3.begin())) {
 		return Test_failure();
@@ -66,11 +66,11 @@ void	vector_test_constructors() {
 	annonce("Operator =");
 
 	time = get_time();
-	std::vector<int>		real4 = real3;
+	PRE::vector<int>		real4 = real3;
 	real_time = get_time() - time;
 
 	time = get_time();
-	ft::vector<int> mine4 = mine;
+	PRE::vector<int> mine4 = mine;
 	mine_time = get_time() - time;
 	if (!ft::equal(mine.begin(), mine.end(), mine4.begin())) {
 		return Test_failure();
@@ -82,8 +82,8 @@ void vector_test_assign() {
 	title("\e[95m-Assign-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Assign 1000 value");
 	int i = rand() % 2147483647;
@@ -119,8 +119,8 @@ void vector_test_assign() {
 	}
 	Test_performance(real_time, mine_time);
 
-	std::vector<int>	real2;
-	ft::vector<int>		mine2;
+	PRE::vector<int>	real2;
+	PRE::vector<int>		mine2;
 
 	annonce("Assign range");
 
@@ -143,8 +143,8 @@ void	vector_test_at() {
 	title("\e[95m-At-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	for (int i = 0; i < 10; i++) {
 		real.push_back(i);
@@ -200,8 +200,8 @@ void	vector_test_brackets() {
 	title("\e[95m-Brackets []-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	for (int i = 0; i < 10; i++) {
 		real.push_back(i);
@@ -247,8 +247,8 @@ void	vector_test_front() {
 	title("\e[95m-Front-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 	int n = rand() % 2147483647;
 
 	annonce("Front with one element");
@@ -279,8 +279,8 @@ void	vector_test_back() {
 	title("\e[95m-Back-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 	int n = rand() % 2147483647;
 
 	annonce("Back with one element");
@@ -311,8 +311,8 @@ void	vector_test_data() {
 	title("\e[95m-Data-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 	int n = rand() % 2147483647;
 
 	annonce("Data with one element");
@@ -342,8 +342,8 @@ void	vector_test_data() {
 void	vector_test_empty() {
 	title("\e[95m-Empty-\e[39m");
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Empty with no element");
 	if (real.empty() != mine.empty()) {
@@ -368,8 +368,8 @@ void	vector_test_size() {
 	title("\e[95m-Size-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Size with no element");
 	if (real.size() != mine.size()) {
@@ -407,8 +407,8 @@ void	vector_test_max_size() {
 	title("\e[95m-Max_size-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Max_size");
 	if (real.max_size() != mine.max_size()) {
@@ -423,8 +423,8 @@ void	vector_test_reserve() {
 	title("\e[95m-Reserve-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Reserve with 0");
 
@@ -495,8 +495,8 @@ void	vector_test_capacity() {
 	title("\e[95m-Capacity-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Capacity with 0");
 	if (real.capacity() != mine.capacity()) {
@@ -533,8 +533,8 @@ void	vector_test_clear() {
 	title("\e[95m-Clear-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Clear with 0");
 
@@ -596,8 +596,8 @@ void	vector_test_insert() {
 	title("\e[95m-Insert-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Insert 2 element at begin");
 
@@ -663,8 +663,8 @@ void	vector_test_insert() {
 	}
 	Test_performance(real_time, mine_time);
 
-	std::vector<int>	real2;
-	ft::vector<int>		mine2;
+	PRE::vector<int>	real2;
+	PRE::vector<int>		mine2;
 
 	annonce("Insert with range at begin");
 
@@ -703,8 +703,8 @@ void	vector_test_erase() {
 	title("\e[95m-Erase-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Erase 1 element from the begin");
 	real.push_back(1);
@@ -781,8 +781,8 @@ void	vector_test_push_back() {
 	title("\e[95m-Push_back-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Push 1 element");
 
@@ -825,8 +825,8 @@ void	vector_test_pop_back() {
 	title("\e[95m-Pop_back-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Pop 1 element");
 	real.push_back(1);
@@ -875,8 +875,8 @@ void	vector_test_resize() {
 	title("\e[95m-Resize-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Resize from 0 to 1 element");
 
@@ -931,8 +931,8 @@ void	vector_test_swap() {
 	title("\e[95m-Swap-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Swap 1 element");
 	real.push_back(1);
@@ -1008,8 +1008,8 @@ void	vector_iterators_test_begin() {
 	title("\e[95m-Begin-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Begin 1 element");
 	real.push_back(1);
@@ -1038,8 +1038,8 @@ void	vector_iterators_test_end() {
 	title("\e[95m-End-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("End 1 element");
 	real.push_back(1);
@@ -1068,8 +1068,8 @@ void	vector_iterators_test_rbegin() {
 	title("\e[95m-Rbegin-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Rbegin 1 element");
 	real.push_back(1);
@@ -1098,8 +1098,8 @@ void	vector_iterators_test_rend() {
 	title("\e[95m-Rend-\e[39m");
 	srand(time(NULL));
 
-	std::vector<int>	real;
-	ft::vector<int>		mine;
+	PRE::vector<int>	real;
+	PRE::vector<int>		mine;
 
 	annonce("Rend 1 element");
 	real.push_back(1);

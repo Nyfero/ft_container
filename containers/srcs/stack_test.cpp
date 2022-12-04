@@ -3,7 +3,7 @@
 void	stack_test_push_top() {
 	title("\e[95m-Push Top-\e[39m");
 
-	PRE::stack<int> real;
+	std::stack<int> real;
 	PRE::stack<int> mine;
 	long time = get_time();
 
@@ -35,7 +35,7 @@ void	stack_test_size() {
 	title("\e[95m-Size-\e[39m");
 	srand(time(NULL));
 
-	PRE::stack<int> real;
+	std::stack<int> real;
 	PRE::stack<int> mine;
 	int k = rand() % 101;
 
@@ -56,7 +56,7 @@ void stack_test_pop_empty() {
 	title("\e[95m-Pop Empty-\e[39m");
 	srand(time(NULL));
 
-	PRE::stack<int> real;
+	std::stack<int> real;
 	PRE::stack<int> mine;
 	int k = rand() % 51;
 
@@ -144,7 +144,7 @@ void	stack_test_copy() {
 	title("\e[95m-Copy-\e[39m");
 	srand(time(NULL));
 
-	PRE::stack<int> real;
+	std::stack<int> real;
 	PRE::stack<int> mine;
 
 	for (int i = 0; i < 4; i++) {
@@ -164,7 +164,7 @@ void	stack_test_copy() {
 	annonce("Copy constructor");
 
 	long time = get_time();
-	PRE::stack<int> real2(real);
+	std::stack<int> real2(real);
 	long real_time = get_time() - time;
 	time = get_time();
 	PRE::stack<int> mine2(mine);
@@ -183,7 +183,7 @@ void	stack_test_copy() {
 	annonce("Operator =");
 
 	time = get_time();
-	PRE::stack<int> real3 = real;
+	std::stack<int> real3 = real;
 	real_time = get_time() - time;
 	time = get_time();
 	PRE::stack<int> mine3 = mine;

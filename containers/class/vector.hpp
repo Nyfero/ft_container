@@ -16,23 +16,23 @@ namespace ft {
 			/*****      MEMBER TYPES      *****/
 			/**********************************/
 
-			typedef T											value_type;
-			typedef Allocator									allocator_type;
+			typedef T																						value_type;
+			typedef Allocator																		allocator_type;
 
-			typedef T*											iterator;
-			typedef const T*									const_iterator;
+			typedef T*																					iterator;
+			typedef const T*																		const_iterator;
 
-			typedef ft::reverse_iterator<iterator>				reverse_iterator;
-			typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
+			typedef ft::reverse_iterator<iterator>							reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>				const_reverse_iterator;
 
-			typedef typename allocator_type::reference			reference;
-			typedef typename allocator_type::const_reference	const_reference;
+			typedef typename allocator_type::reference					reference;
+			typedef typename allocator_type::const_reference		const_reference;
 
-			typedef typename allocator_type::pointer			pointer;
-			typedef typename allocator_type::const_pointer		const_pointer;
+			typedef typename allocator_type::pointer						pointer;
+			typedef typename allocator_type::const_pointer			const_pointer;
 
-			typedef std::size_t									size_type;
-			typedef std::ptrdiff_t								difference_type;
+			typedef std::size_t																	size_type;
+			typedef std::ptrdiff_t															difference_type;
 
 
 
@@ -43,9 +43,9 @@ namespace ft {
 			/**************************************/
 
 			allocator_type	_alloc;
-			pointer			_data;
-			size_type		_size;
-			size_type		_capacity;
+			pointer					_data;
+			size_type				_size;
+			size_type				_capacity;
 
 		public:
 
@@ -208,12 +208,12 @@ namespace ft {
 			*/
 
 			reference at( size_type pos ) {
-			range_check(pos);
+				range_check(pos);
 				return _data[pos];
 			};
 
 			const_reference at( size_type pos ) const {
-			range_check(pos);
+				range_check(pos);
 				return _data[pos];
 			};
 
@@ -645,10 +645,11 @@ namespace ft {
 
 			// Return 1 if the vector's size is 0, otherwise double the vector's size
 			size_type	size_check() {
-				if ( _size == 0 )
+				if ( _size == 0 ) {
 					return 1;
+				}
 				return _size * 2;
-			}
+			};
 
 			// Shift all my vector elements from pos to the right n times
 			void	shift_right( size_type pos, size_type n ) {
@@ -762,6 +763,6 @@ namespace ft {
 		lhs.swap(rhs);
 	};
 
-} // namespace ft
+}; // namespace ft
 
 #endif /* VECTOR_HPP */

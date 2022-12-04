@@ -14,12 +14,12 @@ namespace ft {
 				/*****      MEMBER TYPES      *****/
 				/**********************************/
 
-				typedef T                               value_type;
-				typedef T*                              pointer;
-				typedef T&                              reference;
-				typedef std::ptrdiff_t                  difference_type;
-				typedef std::size_t                     size_type;
-				typedef std::bidirectional_iterator_tag iterator_category;
+				typedef T                               	value_type;
+				typedef T*                              	pointer;
+				typedef T&                              	reference;
+				typedef std::ptrdiff_t                  	difference_type;
+				typedef std::size_t                     	size_type;
+				typedef std::bidirectional_iterator_tag 	iterator_category;
 
 			private:
 
@@ -38,11 +38,11 @@ namespace ft {
 
 				map_iterators()
 					: _current(NULL) {
-					};
+				};
 
 				map_iterators( node *ptr )
 					: _current(ptr), _comp(Compare()) {
-					};
+				};
 
 				map_iterators( const map_iterators &other ) {
 					_current = other._current;

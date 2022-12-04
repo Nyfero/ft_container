@@ -7,7 +7,7 @@
 
 namespace ft {
 
-	template<typename T>
+	template< typename T >
 	struct node
 	{
 		T				*_data;
@@ -18,7 +18,7 @@ namespace ft {
 		int			_height;
 	};
 
-	template <typename Key, typename T, typename Compare = std::less<Key>, typename Allocator = std::allocator<ft::pair<const Key, T> > >
+	template < typename Key, typename T, typename Compare = std::less<Key>, typename Allocator = std::allocator<ft::pair<const Key, T> > >
 	class map
 	{
 
@@ -50,7 +50,7 @@ namespace ft {
 		protected:
 
 			typedef node<value_type>																						tnode;
-			typedef typename allocator_type::template rebind<tnode>::other				node_alloc;
+			typedef typename allocator_type::template rebind<tnode>::other			node_alloc;
 
 
 		public:
@@ -69,13 +69,18 @@ namespace ft {
 			class value_compare : public std::binary_function<value_type, value_type, bool>
 			{
 				protected:
+
 					Compare comp;
 
 				public:
-					value_compare( Compare c ) : comp(c) {}
+
+					value_compare( Compare c )
+						: comp(c) {
+					};
+
 					bool operator()( const value_type& x, const value_type& y ) const {
 						return comp(x.first, y.first);
-					}
+					};
 			};
 
 		private:
@@ -189,15 +194,17 @@ namespace ft {
 
 			T& at( const Key& key ) {
 				iterator it = find(key);
-				if (it != end() && it->first == key)
+				if (it != end() && it->first == key) {
 					return it->second;
+				}
 				throw std::out_of_range("Key not found");
 			};
 
 			const T& at( const Key& key ) const {
 				const_iterator it = find(key);
-				if (it != end() && it->first == key)
+				if (it != end() && it->first == key) {
 					return it->second;
+				}
 				throw std::out_of_range("Key not found");
 			};
 
@@ -240,14 +247,16 @@ namespace ft {
 			*/
 
 			iterator begin() {
-				if (_size == 0)
+				if (_size == 0) {
 					return iterator(_end);
+				}
 				return iterator(node_value_min(_root));
 			};
 
 			const_iterator begin() const {
-				if (_size == 0)
+				if (_size == 0) {
 					return const_iterator(_end);
+				}
 				return const_iterator(node_value_min(_root));
 			};
 
@@ -956,13 +965,15 @@ namespace ft {
 	//	Operator==
 	template< class Key, class T, class Compare, class Alloc >
 	bool operator==( const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs ) {
-		if (lhs.size() != rhs.size())
+		if (lhs.size() != rhs.size()) {
 			return false;
+		}
 		typename ft::map<Key,T,Compare,Alloc>::const_iterator it1 = lhs.begin();
 		typename ft::map<Key,T,Compare,Alloc>::const_iterator it2 = rhs.begin();
 		while (it1 != lhs.end()) {
-			if (it1->first != it2->first || it1->second != it2->second)
+			if (it1->first != it2->first || it1->second != it2->second) {
 				return false;
+			}
 			++it1;
 			++it2;
 		}
@@ -981,19 +992,24 @@ namespace ft {
 		typename ft::map<Key,T,Compare,Alloc>::const_iterator it1 = lhs.begin();
 		typename ft::map<Key,T,Compare,Alloc>::const_iterator it2 = rhs.begin();
 		while (it1 != lhs.end() && it2 != rhs.end()) {
-			if (it1->first < it2->first)
+			if (it1->first < it2->first) {
 				return true;
-			else if (it1->first > it2->first)
+			}
+			else if (it1->first > it2->first) {
 				return false;
-			else if (it1->second < it2->second)
+			}
+			else if (it1->second < it2->second) {
 				return true;
-			else if (it1->second > it2->second)
+			}
+			else if (it1->second > it2->second) {
 				return false;
+			}
 			++it1;
 			++it2;
 		}
-		if (it1 == lhs.end() && it2 != rhs.end())
+		if (it1 == lhs.end() && it2 != rhs.end()) {
 			return true;
+		}
 		return false;
 	};
 
@@ -1026,6 +1042,6 @@ namespace ft {
 		lhs.swap(rhs);
 	};
 
-} // namespace ft
+}; // namespace ft
 
 #endif /*MAP_HPP*/

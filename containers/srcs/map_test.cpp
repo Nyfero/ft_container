@@ -6,7 +6,7 @@ void	map_test_constructors() {
 	annonce("Default constructor");
 
 	long time = get_time();
-	PRE::map<char, int> real;
+	std::map<char, int> real;
 	real['a'] = 44;
 	real['b'] = -34;
 	real['c'] = 112;
@@ -28,7 +28,7 @@ void	map_test_constructors() {
 	annonce("Range constructor");
 
 	time = get_time();
-	PRE::map<char, int>		real2(real.begin(), real.end());
+	std::map<char, int>		real2(real.begin(), real.end());
 	real_time = get_time() - time;
 
 	time = get_time();
@@ -44,7 +44,7 @@ void	map_test_constructors() {
 	annonce("Copy constructor");
 
 	time = get_time();
-	PRE::map<char, int>		real3(real2);
+	std::map<char, int>		real3(real2);
 	real_time = get_time() - time;
 
 	time = get_time();
@@ -60,7 +60,7 @@ void	map_test_constructors() {
 	annonce("Operator =");
 
 	time = get_time();
-	PRE::map<char, int>		real4 = real3;
+	std::map<char, int>		real4 = real3;
 	real_time = get_time() - time;
 
 	time = get_time();
@@ -77,9 +77,9 @@ void	map_test_constructors() {
 void	map_test_at() {
 	title("\e[95m-At-\e[39m");
 
-	PRE::map<int, int> real;
+	std::map<int, int> real;
 	for (int i = 0; i < 10; i++) {
-			real.insert(PRE::pair<int, int>(i, i));
+			real.insert(std::pair<int, int>(i, i));
 	}
 	PRE::map<int, int>		mine;
 	for (int i = 0; i < 10; i++) {
@@ -128,9 +128,9 @@ void	map_test_at() {
 void	map_test_bracket() {
 		title("\e[95m-Brackets []-\e[39m");
 
-	PRE::map<int, int> real;
+	std::map<int, int> real;
 	for (int i = 0; i < 10; i++) {
-			real.insert(PRE::pair<int, int>(i, i));
+			real.insert(std::pair<int, int>(i, i));
 	}
 	PRE::map<int, int>		mine;
 	for (int i = 0; i < 10; i++) {
@@ -169,7 +169,7 @@ void	map_test_bracket() {
 void	map_test_empty() {
 	title("\e[95m-Empty-\e[39m");
 
-	PRE::map<int, int>	real;
+	std::map<int, int>	real;
 	PRE::map<int, int>		mine;
 
 	annonce("Empty with no element");
@@ -181,7 +181,7 @@ void	map_test_empty() {
 	Test_success();
 
 	annonce("Empty with one element");
-	real.insert(PRE::pair<int, int>(1, 1));
+	real.insert(std::pair<int, int>(1, 1));
 	mine.insert(PRE::pair<int, int>(1, 1));
 	if (real.empty() != mine.empty()) {
 		std::cout << "Real map: " << real.empty() << std::endl;
@@ -195,7 +195,7 @@ void	map_test_size() {
 	title("\e[95m-Size-\e[39m");
 	srand(time(NULL));
 
-	PRE::map<int, int>	real;
+	std::map<int, int>	real;
 	PRE::map<int, int>		mine;
 
 	annonce("Size with no element");
@@ -207,7 +207,7 @@ void	map_test_size() {
 	Test_success();
 
 	annonce("Size with one element");
-	real.insert(PRE::pair<int, int>(1, 1));
+	real.insert(std::pair<int, int>(1, 1));
 	mine.insert(PRE::pair<int, int>(1, 1));
 	if (real.size() != mine.size()) {
 		std::cout << "Real map: " << real.size() << std::endl;
@@ -219,7 +219,7 @@ void	map_test_size() {
 	annonce("Size beetwen 1 and 1000");
 	int n = (rand() % 1000) + 1;
 	for (int i = 0; i < n; i++) {
-		real.insert(PRE::pair<int, int>(i, i));
+		real.insert(std::pair<int, int>(i, i));
 		mine.insert(PRE::pair<int, int>(i, i));
 	}
 	if (real.size() != mine.size()) {
@@ -234,7 +234,7 @@ void	map_test_clear() {
 	title("\e[95m-Clear-\e[39m");
 	srand(time(NULL));
 
-	PRE::map<int, int>	real;
+	std::map<int, int>	real;
 	PRE::map<int, int>		mine;
 
 	annonce("Clear with 0");
@@ -255,7 +255,7 @@ void	map_test_clear() {
 
 	annonce("Clear with 1");
 
-	real.insert(PRE::pair<int, int>(1, 1));
+	real.insert(std::pair<int, int>(1, 1));
 	mine.insert(PRE::pair<int, int>(1, 1));
 
 	time = get_time();
@@ -274,7 +274,7 @@ void	map_test_clear() {
 
 	annonce("Clear with 1000");
 	for (int i = 0; i < 1000; i++) {
-		real.insert(PRE::pair<int, int>(i, i));
+		real.insert(std::pair<int, int>(i, i));
 		mine.insert(PRE::pair<int, int>(i, i));
 	}
 
@@ -298,17 +298,17 @@ void	map_test_insert() {
 	srand(time(NULL));
 
 	annonce("Insert with pair");
-	PRE::map<int, int> real;
+	std::map<int, int> real;
 
-	PRE::pair<int, int> radd(100, 42);
-	PRE::pair<int, int> radd2(50, 42);
-	PRE::pair<int, int> radd3(4, 42);
-	PRE::pair<int, int> radd4(2, 42);
-	PRE::pair<int, int> radd5(999, 48);
-	PRE::pair<int, int> radd6(7, 42);
-	PRE::pair<int, int> radd7(12, 42);
-	PRE::pair<int, int> radd8(-56, 42);
-	PRE::pair<int, int> radd9(1, 42);
+	std::pair<int, int> radd(100, 42);
+	std::pair<int, int> radd2(50, 42);
+	std::pair<int, int> radd3(4, 42);
+	std::pair<int, int> radd4(2, 42);
+	std::pair<int, int> radd5(999, 48);
+	std::pair<int, int> radd6(7, 42);
+	std::pair<int, int> radd7(12, 42);
+	std::pair<int, int> radd8(-56, 42);
+	std::pair<int, int> radd9(1, 42);
 
 	long time = get_time();
 	real.insert(radd);
@@ -355,7 +355,7 @@ void	map_test_insert() {
 
 	annonce("Insert with range");
 
-	PRE::map<int, int> real2;
+	std::map<int, int> real2;
 	PRE::map<int, int> mine2;
 
 	time = get_time();
@@ -375,7 +375,7 @@ void	map_test_insert() {
 
 	annonce("Insert with value");
 
-	PRE::map<int, int> real3;
+	std::map<int, int> real3;
 	PRE::map<int, int> mine3;
 
 	time = get_time();
@@ -410,7 +410,7 @@ void	map_test_erase() {
 	srand(time(NULL));
 
 	annonce("Erase with iterator"); {
-			PRE::map<std::string, int>	real;
+			std::map<std::string, int>	real;
 			real["bonjour"] = 42;
 			real["je"] = 43;
 			real["suis"] = 44;
@@ -428,7 +428,7 @@ void	map_test_erase() {
 			mine["lol"] = 47;
 			mine["."] = 48;
 
-			PRE::map<std::string, int>::iterator it_real = real.begin();
+			std::map<std::string, int>::iterator it_real = real.begin();
 			it_real++;
 			it_real++;
 			long time = get_time();
@@ -453,7 +453,7 @@ void	map_test_erase() {
 	}
 
 	annonce("Erase with range"); {
-		PRE::map<std::string, int>	real;
+		std::map<std::string, int>	real;
 		real["bonjour"] = 42;
 		real["je"] = 43;
 		real["suis"] = 44;
@@ -488,7 +488,7 @@ void	map_test_erase() {
 	}
 
 	annonce("Erase with key"); {
-		PRE::map<std::string, int>	real;
+		std::map<std::string, int>	real;
 		real["bonjour"] = 42;
 		real["je"] = 43;
 		real["suis"] = 44;
@@ -529,11 +529,11 @@ void	map_test_swap() {
 	title("\e[95m-Swap-\e[39m");
 	srand(time(NULL));
 
-	PRE::map<int, int>	real;
+	std::map<int, int>	real;
 	PRE::map<int, int>		mine;
 
 	annonce("Swap 1 element");
-	real.insert(PRE::pair<int, int>(1, 1));
+	real.insert(std::pair<int, int>(1, 1));
 	mine.insert(PRE::pair<int, int>(1, 1));
 
 	long time = get_time();
@@ -552,7 +552,7 @@ void	map_test_swap() {
 
 	annonce("Swap 1000 elements");
 	for (int i = 0; i < 1000; i++) {
-		real.insert(PRE::pair<int, int>(i, i));
+		real.insert(std::pair<int, int>(i, i));
 		mine.insert(PRE::pair<int, int>(i, i));
 	}
 
@@ -574,7 +574,7 @@ void	map_test_swap() {
 void map_test_count() {
 	title("\e[95m-Count-\e[39m");
 
-	PRE::map<std::string, int>	real;
+	std::map<std::string, int>	real;
 	real["bonjour"] = 42;
 	real["je"] = 43;
 	real["suis"] = 44;

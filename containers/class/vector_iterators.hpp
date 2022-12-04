@@ -14,11 +14,11 @@ namespace ft {
 			/*****      MEMBER TYPES      *****/
 			/**********************************/
 
-			typedef T				value_type;
-			typedef T*				pointer;
-			typedef T&				reference;
-			typedef std::ptrdiff_t	difference_type;
-			typedef std::size_t		size_type;
+			typedef T									value_type;
+			typedef T*								pointer;
+			typedef T&								reference;
+			typedef std::ptrdiff_t		difference_type;
+			typedef std::size_t				size_type;
 
 
 

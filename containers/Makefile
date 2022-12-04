@@ -11,7 +11,7 @@ END = \e[39m
 #    Showing command
 DISP = TRUE
 
-ifeq ($(DISP),TRUE)
+ifeq ($(DISP),FALSE)
     HIDE =
 else
     HIDE = @
@@ -66,7 +66,7 @@ $(NAME): $(OBJS_PATH) $(OBJS) $(CLASS)
 $(STD_NAME): $(STD_OBJS_PATH) $(STD_OBJS) $(CLASS)
 	@ echo "$(BLUE)\n         ***Make $(STD_NAME) ***\n$(END)"
 	$(HIDE) $(CXX) $(CFLAGS) $(STD_OBJS) -o $(STD_NAME)
-	 @ echo "$(GREEN)\n        ---$(STD_NAME) created ---\n$(END)"
+	@ echo "$(GREEN)\n        ---$(STD_NAME) created ---\n$(END)"
 
 $(OBJS_PATH):
 	$(HIDE) mkdir -p $(OBJS_PATH)
@@ -83,10 +83,11 @@ $(STD_OBJS_PATH)%.o: $(SRCS_PATH)%.cpp $(CLASS) Makefile
 	@ echo "$(GREEN)[ OK ]$(END) $(CYAN)${<:.s=.o}$(END)"
 
 diff: $(NAME) $(STD_NAME)
-	@./$(NAME) > $(NAME).txt
-	@./$(STD_NAME) > $(STD_NAME).txt
-	-@diff -ys $(NAME).txt $(STD_NAME).txt
-	@rm -rf $(NAME).txt $(STD_NAME).txt
+	@ echo "$(YELLOW)\n		***Diff ft_containers std_containers***\n$(END)"
+	$(HIDE) ./$(NAME) > $(NAME).txt
+	$(HIDE) ./$(STD_NAME) > $(STD_NAME).txt
+	-$(HIDE) diff -ys $(NAME).txt $(STD_NAME).txt
+	$(HIDE) $(RM) $(NAME).txt $(STD_NAME).txt
 
 clean:
 	$(HIDE) $(RM) $(OBJS_PATH)
@@ -95,8 +96,9 @@ clean:
 
 fclean: clean
 	$(HIDE) $(RM) $(NAME)
-	$(HIDE) $(RM) $(STD_NAME)
 	@ echo "$(RED)\n        *** Remove $(NAME) ***\n$(END)"
+	$(HIDE) $(RM) $(STD_NAME)
+	@ echo "$(RED)\n        *** Remove $(STD_NAME) ***\n$(END)"
 
 re: fclean all
 
